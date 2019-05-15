@@ -1,3 +1,4 @@
+
 # README
 
 This README would normally document whatever steps are necessary to get the
@@ -32,7 +33,8 @@ has_many :group_users
 has_many :comments
 
 |column|type   |index|null  |unique|
-|------|-------|-----|------|------|
+
+|name  |string |true |false  |true|
 
 |password |string |false|false |false |
 
