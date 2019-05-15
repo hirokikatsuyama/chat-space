@@ -33,8 +33,7 @@ has_many :comments
 
 |column|type   |index|null  |unique|
 |------|-------|-----|------|------|
-|name  |string |true |false |false |
-|email |string |false|false |true  |
+
 |password |string |false|false |false |
 
 ### Group_userテーブル(中間テーブル)
