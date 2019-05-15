@@ -66,3 +66,4 @@ belongs_to :group
 |group_id   |references|true |false |false |true       |
 |comment    |text   |false|true  |false |false      |
 |image      |string |false|true  |false |false      |
+
