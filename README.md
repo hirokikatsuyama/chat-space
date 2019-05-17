@@ -24,7 +24,6 @@ Things you may want to cover:
 
 * ...
 # chat-space
-
 ### Userテーブル
 #Group_userテーブルとのアソシエーション
 has_many :groups ,through: :group_users
