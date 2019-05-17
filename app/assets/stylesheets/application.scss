@@ -1,8 +1,7 @@
-@import "./reset";
-@import "./font-awesome-rails";
+// @import "./font-awesome-rails";
 @import "config/reset";
-@import "mixins/mixin";
-@import "mixins/vendor_prefix";
+@import "mixin/mixin";
+@import "mixin/vendor_prefix";
 @import "modules/side_bar";
 @import "modules/chat";
 @import "messages/messages.scss"
