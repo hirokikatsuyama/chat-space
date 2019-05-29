@@ -36,12 +36,12 @@ $(function() {
       var html = buildHTML(data);
       $('.messages').append(html)
       $('.message_content').val('')
+      $("form")[0].reset();
     })
     .fail(function(){
       alert('error');
     })
     .always(function(data){
-    
       $('.form__submit').attr('disabled', false);　
     })
     function scrollBottom(){        
