@@ -20,12 +20,8 @@ $(function() {
                 </div>`
   return html;
   }
-  
-  
   $('.new_message').on('submit', function(e) {
     e.preventDefault();
-   
-    
     var message = new FormData(this);   
     var url = $(this).attr('action');  
     $.ajax({
@@ -36,28 +32,18 @@ $(function() {
       processData: false,
       contentType: false
     })
-
-    
     .done(function(data){
-      
       var html = buildHTML(data);
       $('.messages').append(html)
       $('.message_content').val('')
     })
-    
     .fail(function(){
       alert('error');
     })
-
-   
-
     .always(function(data){
     
       $('.form__submit').attr('disabled', false);　
     })
-    
-
-   
     function scrollBottom(){        
       var target = $('.message').last();
       var position = target.offset().top + $('.messages').scrollTop();
@@ -65,9 +51,6 @@ $(function() {
         scrollTop: position
       }, 300, 'swing');
     }
-    
-
-
   });
 });
 
