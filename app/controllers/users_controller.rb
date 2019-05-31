@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
   
   def index 
-    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%").limit(10)
+    @users = User.where('name LIKE(?)', "%#{params[:keyword]}%").where.not(id: current_user.id)
     respond_to do |format|
     format.html
     format.json
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if update(user_params)
+    if current_user.update(user_params)
       redirect_to root_path
     else
       render :edit
