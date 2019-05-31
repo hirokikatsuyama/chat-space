@@ -58,8 +58,8 @@ $(function(){
   })
   $(function(){
     $(document).on('click', '.user-search-add', function() {
-      var name = $(this).attr("data-user-name");    //attr名前取得
-      var user_id = $(this).attr("data-user-id");   //id取得
+      var name = $(this).data("user-name");    //user-name取得
+      var user_id = $(this).data("user-id");   //id取得
       $(this).parent().remove();     //クリックした子要素と親要素を削除
       appendUserToMemberList(name, user_id);    //メンバーに追加
     });
