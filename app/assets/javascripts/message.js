@@ -1,25 +1,31 @@
 $(function() {
-  function buildHTML(message) {
-    var content = message.content ? `${ message.content }` : "";
-    var img = message.image ? `<img src= ${ message.image }>` : "";
-    var html = `<div class="message" data-id="${message.id}">
-                  <div class="message__detail">
-                    <p class="message__detail__current-user-name">
-                      ${message.user_name}
-                    </p>
-                    <p class="message__detail__date">
-                      ${message.date}
-                    </p>
-                  </div>
-                  <p class="message_body">
-                    <div>
-                    ${content}
-                    </div>
-                    ${img}
-                  </p>
-                </div>`
-  return html;
+  function buildHTML(message){
+    console.log(message.image)
+    image = ( message.image ) ? `<img class= "lower-message__image" src=${message.image} >` : "";
+  	  var html =
+  	    `<div class="main__message__box" data-message-id= "${message.id}">
+          <div class="main__message__box__top">
+            <div class="main__message__box__top__name">
+              ${message.user_name}
+            </div>
+            <div class="main__message__box__top__time">
+              ${message.created_at}
+            </div>
+          </div>
+          <div class="main__message__box__text">
+            <p class="lower-message__content">
+              ${message.content}
+            </p>
+          </div>
+          ${image}
+        </div>`
+    return html;
   }
+  
+  function ScrollToNewMessage(){
+    $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight},);
+  }
+  //非同期通信
   $('.new_message').on('submit', function(e) {
     e.preventDefault();
     var message = new FormData(this);   
@@ -51,6 +57,33 @@ $(function() {
       }, 300, 'swing');
     }
   });
+  //自動更新
+  var reloadMessages = function() {
+    last_message_id = $(".message").last().data("id");     //messageはクラス名
+    console.log(last_message_id)
+    
+    
+    // var group_id = $(".left-header").data('group-id');
+  
+    $.ajax({
+      url: 'api/messages',  
+      type: 'get',  
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      var insertHTML = '';
+      messages.forEach(function(message){
+      insertHTML = buildHTML(message);         
+      $('.messages').append(insertHTML)
+      ScrollToNewMessage();
+      });
+    })
+    .fail(function() {
+      alert('自動更新に失敗しました');
+    });
+  };
+  setInterval(reloadMessages, 5000);
 });
 
 
