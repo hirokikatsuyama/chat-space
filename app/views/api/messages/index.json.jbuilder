@@ -1,7 +1,8 @@
-json.array! @messages do |message|    #配列で返す場合array!
-  json.content message.content
-  json.image message.image
-  json.created_at message.created_at
+# binding.pry
+json.array! @messages do |message|    
+  json.image message.image.url
+  json.created_at message.created_at.strftime("%Y/%m/%d %H:%M")
   json.user_name message.user.name
   json.id message.id
+  json.content message.content
 end
