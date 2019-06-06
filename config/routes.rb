@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :groups, only: [:new, :create, :edit, :update] do
   resources :messages, only: [:index, :create]
   namespace :api do
-    resources :messages, only: :index, defaults: { format: 'json' }   #api/messages_controller.rbのindexアクションが動く
-  end
+    resources :messages, only: :index, defaults: { format: 'json' }   #api用
   end
 end
+end
+
+
