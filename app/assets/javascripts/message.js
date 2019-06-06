@@ -1,6 +1,5 @@
 $(function() {
   function buildHTML(message){
-    console.log(message.image)
     image = ( message.image ) ? `<img class= "lower-message__image" src=${message.image} >` : "";
   	  var html =
   	    `<div class="main__message__box" data-message-id= "${message.id}">
@@ -60,11 +59,6 @@ $(function() {
   //自動更新
   var reloadMessages = function() {
     last_message_id = $(".message").last().data("id");     //messageはクラス名
-    console.log(last_message_id)
-    
-    
-    // var group_id = $(".left-header").data('group-id');
-  
     $.ajax({
       url: 'api/messages',  
       type: 'get',  
